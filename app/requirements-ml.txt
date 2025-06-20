@@ -1,0 +1,13 @@
+# Core ML stack for DistilBERT model
+transformers==4.46.3
+tokenizers==0.20.3
+torch==2.4.1
+scikit-learn==1.3.2
+numpy==1.24.4
+pandas==2.0.3
+regex==2024.11.6
+tqdm==4.67.1
+scipy==1.10.1
+joblib==1.4.2
+python-dotenv
+
