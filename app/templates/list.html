@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email List - ThePhish</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-4">Recent Emails</h2>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>UID</th>
+                    <th>From</th>
+                    <th>Subject</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in emails %}
+                <tr>
+                    <td>{{ email.uid }}</td>
+                    <td>{{ email.from }}</td>
+                    <td>{{ email.subject }}</td>
+                    <td>
+                        {% if email.verdict %}
+                            <span class="badge badge-success">{{ email.verdict }}</span>
+                        {% else %}
+                            <form method="post" action="/analysis">
+                                <input type="hidden" name="mailUID" value="{{ email.uid }}">
+                                <input type="hidden" name="sid" value="manual">
+                                <button class="btn btn-primary btn-sm" type="submit">Analyze</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-secondary mt-3" href="/">Back to Home</a>
+    </div>
+</body>
+</html>
+

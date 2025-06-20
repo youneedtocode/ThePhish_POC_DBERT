@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Verdicts</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+    <h2>Email Verdicts</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Mail To</th>
+                <th>Subject</th> <!-- ✅ New -->
+                <th>Verdict</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for v in verdicts %}
+            <tr>
+                <td>{{ v.mail_to }}</td>
+                <td>{{ v.subject }}</td> <!-- ✅ New -->
+                <td>{{ v.verdict }}</td>
+                <td>{{ v.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+

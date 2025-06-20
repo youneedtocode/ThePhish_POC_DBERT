@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+web_dashboard/venv/
+
+# Secrets
+*.env
+*.pem
+*.key
+configuration.json
+
+# Logs
+*.log
+
+# OS files
+.DS_Store

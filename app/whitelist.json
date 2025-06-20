@@ -1,0 +1,44 @@
+{
+  "exactMatching": {
+    "mail": [],
+    "domain": [],
+    "ip": [],
+    "url": [],
+    "filename": [],
+    "filetype": [],
+    "hash": []
+  },
+  "regexMatching": {
+    "mail": [],
+    "domain": [],
+    "ip": [],
+    "url": [],
+    "filename": [],
+    "filetype": [],
+    "hash": []
+  },
+  "partialMatching": {
+    "mail": [],
+    "domain": [],
+    "ip": [],
+    "url": [],
+    "filename": [],
+    "filetype": [],
+    "hash": []
+  },
+  "domainsInURLs": [
+    "google.com",
+    "microsoft.com"
+  ],
+  "domainsInEmails": [
+    "google.com"
+  ],
+  "regexDomainsInSubdomains": [],
+  "regexDomainsInURLs": [],
+  "regexDomainsInEmails": [],
+  "domainsInSubdomains": [],
+  "whitelistedSenders": [],
+  "whitelistedReplyTo": [],
+  "whitelistedReturnPaths": [],
+  "whitelistedSubjectKeywords": []
+}
