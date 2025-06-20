@@ -1,4 +1,3 @@
-
 # ThePhish: AI-Powered Phishing Email Detection Tool
 
 **ThePhish** is a standalone phishing email analysis tool that uses a fine-tuned DistilBERT model to detect and classify emails as either **malicious (phishing)** or **safe**. This tool augments the original open-source version with advanced NLP capabilities for high-accuracy threat detection.
@@ -22,14 +21,30 @@ The motivation behind ThePhish project was to enhance a traditional phishing ana
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Quick Setup (Recommended)
+
+To install all dependencies and prepare the environment automatically:
+
+```bash
+./setup.sh
+```
+
+This script will:
+- Install system packages (Python, pip, venv, build tools)
+- Create a virtual environment
+- Install dependencies from both `requirements.txt` and `requirements-ml.txt`
+- Provide next steps to launch the app
+
+---
+
+## 🚀 Manual Setup
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ThePhish_POC_DBERT.git
+git clone https://github.com/youneedtocode/ThePhish_POC_DBERT.git
 cd ThePhish_POC_DBERT
-````
+```
 
 ### 2. Set Up Python Environment
 
@@ -37,6 +52,7 @@ cd ThePhish_POC_DBERT
 python3 -m venv venv
 source venv/bin/activate
 pip install -r app/requirements.txt
+pip install -r app/requirements-ml.txt
 ```
 
 ### 3. Configure Credentials
@@ -57,7 +73,7 @@ IMAP_PASS=yourpassword
 MONGO_URI=mongodb://localhost:27017
 ```
 
-### 4. Place Model Files (Optional)
+### 4. Place Model Files (Manual Step)
 
 The DistilBERT fine-tuned model is not included due to size. Download or generate your model and place it in:
 
@@ -80,6 +96,7 @@ Visit `http://localhost:8080` in your browser.
 
 ```
 ThePhish_POC_DBERT/
+├── setup.sh
 ├── app/
 │   ├── run_analysis.py
 │   ├── thephish_app.py
@@ -89,6 +106,7 @@ ThePhish_POC_DBERT/
 │   ├── configuration.json
 │   ├── whitelist.json
 │   ├── requirements.txt
+│   ├── requirements-ml.txt
 │   └── ...
 ├── LICENSE
 ├── README.md
@@ -106,6 +124,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## 🤝 Contributing
 
 Contributions, feedback, and suggestions are welcome. Please fork the repo and submit a pull request.
-
-```
 
