@@ -16,7 +16,7 @@ The motivation behind ThePhish project was to enhance a traditional phishing ana
 - 🧠 Utilizes a fine-tuned DistilBERT transformer model for phishing classification
 - 💬 Displays verdicts (Safe or Malicious) along with phishing confidence scores
 - 🖥️ Clean, browser-based UI for interacting with the tool
-- 🔒 Credentials and sensitive data externalized using `.env` setup
+- 🔒 Supports secure credential setup via `.env` file or direct JSON editing
 - 🧪 Trained on real-world email datasets (Enron, SpamAssassin, CEAS, Nazario, etc.)
 
 ---
@@ -27,13 +27,14 @@ To install all dependencies and prepare the environment automatically:
 
 ```bash
 ./setup.sh
-```
+````
 
 This script will:
-- Install system packages (Python, pip, venv, build tools)
-- Create a virtual environment
-- Install dependencies from both `requirements.txt` and `requirements-ml.txt`
-- Provide next steps to launch the app
+
+* Install system packages (Python, pip, venv, build tools)
+* Create a virtual environment
+* Install dependencies from both `requirements.txt` and `requirements-ml.txt`
+* Provide next steps to launch the app
 
 ---
 
@@ -55,25 +56,59 @@ pip install -r app/requirements.txt
 pip install -r app/requirements-ml.txt
 ```
 
-### 3. Configure Credentials
+---
 
-Create a `.env` file in `app/` using the included `env_template.txt`:
+## 🔐 Configure Email & MongoDB Credentials
 
-```bash
-cp app/env_template.txt app/.env
-nano app/.env
+You can configure credentials in **either of the following two ways**:
+
+### ✅ Option 1 (Recommended): Use a `.env` file
+
+1. Copy the template:
+
+   ```bash
+   cp app/env_template.txt app/.env
+   nano app/.env
+   ```
+
+2. Fill in:
+
+   ```env
+   IMAP_HOST=imap.example.com
+   IMAP_USER=your-email@example.com
+   IMAP_PASS=your-app-password
+   MONGO_URI=mongodb://localhost:27017
+   ```
+
+The app will use these variables to create or overwrite `configuration.json` automatically (if supported).
+
+---
+
+### 📝 Option 2: Manually Edit `configuration.json`
+
+If you prefer, edit the following file directly:
+
+```
+app/configuration.json
 ```
 
-Fill in the following:
+Replace placeholders:
 
-```env
-IMAP_HOST=imap.example.com
-IMAP_USER=your-email@example.com
-IMAP_PASS=yourpassword
-MONGO_URI=mongodb://localhost:27017
+```json
+{
+  "imap": {
+    "host": "imap.example.com",
+    "port": "993",
+    "user": "your-email@example.com",
+    "password": "your-app-password",
+    "folder": "inbox"
+  }
+}
 ```
 
-### 4. Place Model Files (Manual Step)
+---
+
+## 📦 Place Model Files (Manual Step)
 
 The DistilBERT fine-tuned model is not included due to size. Download or generate your model and place it in:
 
@@ -81,14 +116,18 @@ The DistilBERT fine-tuned model is not included due to size. Download or generat
 app/distilbert_phishing_finetuned_best/
 ```
 
-### 5. Run the App
+Ensure it includes the `pytorch_model.bin`, `config.json`, and `tokenizer` files.
+
+---
+
+## ▶️ Run the App
 
 ```bash
 cd app
 python3 thephish_app.py
 ```
 
-Visit `http://localhost:8080` in your browser.
+Visit [http://localhost:8080](http://localhost:8080) in your browser.
 
 ---
 
@@ -124,4 +163,6 @@ This project is licensed under the [MIT License](LICENSE).
 ## 🤝 Contributing
 
 Contributions, feedback, and suggestions are welcome. Please fork the repo and submit a pull request.
+
+```
 
