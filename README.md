@@ -32,6 +32,7 @@ To install all dependencies and prepare the environment automatically:
 This script will:
 
 * Install system packages (Python, pip, venv, build tools)
+* Install MongoDB 4.4 from the official MongoDB APT repository
 * Create a virtual environment
 * Install dependencies from both `requirements.txt` and `requirements-ml.txt`
 * Provide next steps to launch the app
@@ -46,6 +47,25 @@ This script will:
 git clone https://github.com/youneedtocode/ThePhish_POC_DBERT.git
 cd ThePhish_POC_DBERT
 ```
+
+
+> 💡 **Important:** You must also ensure MongoDB is installed and running on your system.
+
+To install **MongoDB 4.4** manually on Ubuntu 20.04, run:
+
+```bash
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | \
+  sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt update
+sudo apt install -y mongodb-org
+sudo systemctl enable --now mongod
+```
+After installation, verify MongoDB is running:
+```
+sudo systemctl status mongod
+```
+You should see Active: active (running) in the output.
 
 ### 2. Set Up Python Environment
 
