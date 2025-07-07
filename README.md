@@ -33,11 +33,6 @@ git clone https://github.com/youneedtocode/ThePhish_POC_DBERT.git
 cd ThePhish_POC_DBERT
 ```
 
-2. **Make the setup script executable**:
-
-```bash
-chmod +x setup.sh
-```
 2. **Make the setup script executable and run with Bash**:
 
 ```bash
