@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # =======================================
 # ThePhish Setup Script
 # =======================================
@@ -9,11 +11,18 @@
 
 set -e  # Exit on any error
 
+# ✅ 0. Ensure script is run with Bash
+if [ -z "$BASH_VERSION" ]; then
+  echo "❌ This script must be run using Bash."
+  echo "👉 Use: sudo bash setup.sh"
+  exit 1
+fi
+
 # 1. Display header
-echo "\n🔧 Starting setup for ThePhish_POC_DBERT..."
+echo -e "\n🔧 Starting setup for ThePhish_POC_DBERT..."
 
 # 2. Install system-level dependencies (Debian/Ubuntu based systems)
-echo "\n📦 Installing system dependencies..."
+echo -e "\n📦 Installing system dependencies..."
 sudo apt update && sudo apt install -y \
   python3 \
   python3-pip \
@@ -25,7 +34,7 @@ sudo apt update && sudo apt install -y \
   gnupg
 
 # 3. Install MongoDB 4.4 from official repository
-echo "\n🗄️  Installing MongoDB 4.4..."
+echo -e "\n🗄️  Installing MongoDB 4.4..."
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | \
   sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
@@ -35,33 +44,33 @@ sudo systemctl enable --now mongod
 
 # 4. Python version check
 PY_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
-echo "\n🐍 Detected Python version: $PY_VERSION"
+echo -e "\n🐍 Detected Python version: $PY_VERSION"
 
 # 5. Create virtual environment
-echo "\n📁 Creating virtual environment..."
+echo -e "\n📁 Creating virtual environment..."
 python3 -m venv venv
-source venv/bin/activate
+. venv/bin/activate
 
 # 6. Upgrade pip and install Python dependencies
-echo "\n📦 Installing Python packages from requirements.txt..."
+echo -e "\n📦 Installing Python packages from requirements.txt..."
 pip install --upgrade pip
 pip install -r app/requirements.txt
 
 # 7. Install additional ML dependencies
 if [ -f "app/requirements-ml.txt" ]; then
-  echo "\n🧠 Installing ML model dependencies from requirements-ml.txt..."
+  echo -e "\n🧠 Installing ML model dependencies from requirements-ml.txt..."
   pip install -r app/requirements-ml.txt
 else
   echo "⚠️  'app/requirements-ml.txt' not found. ML model support will be incomplete."
 fi
 
 # 8. Final message
-echo "\n✅ Setup complete."
+echo -e "\n✅ Setup complete."
 echo "To run ThePhish, do the following:"
 echo "----------------------------------------"
-echo "source venv/bin/activate"
+echo ". venv/bin/activate"
 echo "cd app"
 echo "python3 thephish_app.py"
 echo "----------------------------------------"
-echo "\n📌 Don't forget to configure 'app/.env' and place your model directory in 'app/'."
+echo -e "\n📌 Don't forget to configure 'app/.env' or 'configuration.json', and place your model directory in 'app/'."
 
