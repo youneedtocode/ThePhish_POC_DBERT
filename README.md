@@ -25,9 +25,25 @@ The motivation behind ThePhish project was to enhance a traditional phishing ana
 
 To install all dependencies and prepare the environment automatically:
 
+
+1. **Clone this repository**:
+
+```bash
+git clone https://github.com/youneedtocode/ThePhish_POC_DBERT.git
+cd ThePhish_POC_DBERT
+```
+
+2. **Make the setup script executable**:
+
+```bash
+chmod +x setup.sh
+```
+
+3. **Run the setup script**:
+
 ```bash
 ./setup.sh
-````
+```
 
 This script will:
 
