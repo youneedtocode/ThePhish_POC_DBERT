@@ -38,12 +38,15 @@ cd ThePhish_POC_DBERT
 ```bash
 chmod +x setup.sh
 ```
-
-3. **Run the setup script**:
+2. **Make the setup script executable and run with Bash**:
 
 ```bash
-./setup.sh
+chmod +x setup.sh
+sudo bash setup.sh
 ```
+
+⚠️ Important: Always run with bash, not sh, to avoid source: not found errors.
+
 
 This script will:
 
